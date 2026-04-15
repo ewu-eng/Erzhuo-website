@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrightFuture MicroCredit — Demo Journey (Satire)</title>
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --card:#121a2a;
+      --muted:#a8b3cf;
+      --text:#e9eefc;
+      --accent:#6aa6ff;
+      --warn:#ffcc66;
+      --danger:#ff6a6a;
+      --ok:#67e8a5;
+      --border:#23304b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      background: radial-gradient(900px 600px at 20% 10%, #162042 0%, var(--bg) 55%);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .wrap{width:min(760px, 100%);}
+    .topnote{
+      border:1px solid var(--border);
+      background: rgba(18,26,42,0.6);
+      padding:12px 14px;
+      border-radius:12px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
+      margin-bottom:14px;
+    }
+    .card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(18,26,42,0.95), rgba(18,26,42,0.75));
+      border-radius:18px;
+      padding:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .brand{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin-bottom:10px;
+    }
+    .logo{
+      display:flex; align-items:center; gap:10px;
+    }
+    .dot{
+      width:12px;height:12px;border-radius:999px;background:var(--accent);
+      box-shadow:0 0 0 4px rgba(106,166,255,.15);
+    }
+    .brand h1{font-size:16px; margin:0;}
+    .pill{
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--border);
+      padding:6px 10px; border-radius:999px;
+      background: rgba(11,15,25,.35);
+      white-space:nowrap;
+    }
+    .progress{
+      height:10px; border-radius:999px; background: rgba(255,255,255,.06);
+      overflow:hidden; border:1px solid var(--border);
+      margin:12px 0 16px;
+    }
+    .bar{
+      height:100%; width:0%;
+      background: linear-gradient(90deg, var(--accent), #9b7bff);
+      transition:width .35s ease;
+    }
+    .title{
+      font-size:22px; margin:0 0 8px;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:0 0 14px; color:var(--muted); line-height:1.55;
+      font-size:14px;
+    }
+    .box{
+      border:1px dashed rgba(168,179,207,.35);
+      border-radius:14px;
+      padding:14px;
+      background: rgba(11,15,25,.28);
+      margin:12px 0 14px;
+    }
+    .row{display:flex; gap:10px; flex-wrap:wrap;}
+    .btn{
+      appearance:none; border:1px solid var(--border);
+      background: rgba(11,15,25,.35);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      transition:transform .06s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{background: rgba(11,15,25,.55); border-color:#314368;}
+    .btn:active{transform:translateY(1px);}
+    .btn.primary{
+      background: linear-gradient(90deg, var(--accent), #9b7bff);
+      border-color: transparent;
+      color:#071022;
+    }
+    .btn.primary:hover{filter: brightness(1.03);}
+    .btn.danger{
+      background: rgba(255,106,106,.12);
+      border-color: rgba(255,106,106,.4);
+    }
+    .btn.ghost{
+      background: transparent;
+    }
+    .hint{
+      display:flex; justify-content:space-between; align-items:center;
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+      gap:10px;
+    }
+    .fineprint{
+      color: rgba(233,238,252,.72);
+      font-size:12px;
+      line-height:1.5;
+    }
+    .tag{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      font-size:12px;
+      margin-right:6px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background: rgba(11,15,25,.25);
+    }
+    .tag.warn{color:var(--warn); border-color: rgba(255,204,102,.35); background: rgba(255,204,102,.08);}
+    .tag.danger{color:var(--danger); border-color: rgba(255,106,106,.35); background: rgba(255,106,106,.08);}
+    .tag.ok{color:var(--ok); border-color: rgba(103,232,165,.35); background: rgba(103,232,165,.08);}
+    ul{margin:10px 0 0 18px; padding:0;}
+    li{margin:6px 0; color:rgba(233,238,252,.88);}
+    .footer{
+      margin-top:14px;
+      color:rgba(168,179,207,.9);
+      font-size:12px;
+      line-height:1.45;
+    }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      border:1px solid var(--border);
+      padding:2px 6px; border-radius:8px;
+      background: rgba(11,15,25,.35);
+      color:rgba(233,238,252,.9);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topnote">
+      <strong>Satirical / educational demo.</strong> This is <em>not</em> a real loan service. No personal data is collected or stored.
+      It’s just a click-through journey to show how “empowerment” language can slide into pressure, risk, and harm.
+    </div>
+
+    <div class="card">
+      <div class="brand">
+        <div class="logo">
+          <div class="dot"></div>
+          <h1>BrightFuture MicroCredit</h1>
+        </div>
+        <div class="pill">Demo Journey • Cambodia case theme</div>
+      </div>
+
+      <div class="progress"><div class="bar" id="bar"></div></div>
+
+      <h2 class="title" id="title"></h2>
+      <p class="subtitle" id="subtitle"></p>
+
+      <div class="box" id="box"></div>
+
+      <div class="row" id="actions"></div>
+
+      <div class="hint">
+        <div>
+          <span class="kbd">←</span> <span class="kbd">→</span> also works
+        </div>
+        <div id="step"></div>
+      </div>
+
+      <div class="footer" id="footer"></div>
+    </div>
+  </div>
+
+<script>
+  const steps = [
+    {
+      title: "Welcome. Empowerment starts here.",
+      subtitle: "Fast. Friendly. ‘Inclusive.’ Just a few clicks to unlock your potential.",
+      box: `
+        <span class="tag ok">0% paperwork*</span>
+        <span class="tag ok">Women-first</span>
+        <span class="tag ok">Financial inclusion</span>
+        <div style="margin-top:10px" class="fineprint">
+          *We’ll keep it simple. We only need “basic verification” later.
+        </div>
+      `,
+      actions: [
+        {text:"Start", type:"primary", next:1},
+        {text:"Exit", type:"ghost", next:null}
+      ],
+      footer: "Tip: this is how it usually begins: smooth language, big promises."
+    },
+    {
+      title: "Quick check",
+      subtitle: "Choose what fits you. (No one sees this. Totally private.)",
+      box: `
+        <div class="fineprint">
+          1) Income level:<br>
+          <span class="tag">very low</span><span class="tag">low</span><span class="tag">unstable</span><br><br>
+          2) Household role:<br>
+          <span class="tag">caregiver</span><span class="tag">main earner</span><span class="tag">both</span><br><br>
+          3) Do you have land access?<br>
+          <span class="tag ok">yes</span><span class="tag">no</span>
+        </div>
+      `,
+      actions: [
+        {text:"Continue", type:"primary", next:2},
+        {text:"Back", type:"ghost", next:0}
+      ],
+      footer: "Nothing ‘bad’ yet. It’s designed to feel easy."
+    },
+    {
+      title: "Congratulations!",
+      subtitle: "You are pre-approved. You deserve this opportunity.",
+      box: `
+        <div class="fineprint">
+          <span class="tag ok">Loan offer:</span> $800<br>
+          <span class="tag ok">Interest:</span> “low”<br>
+          <span class="tag ok">Purpose:</span> business / family needs / emergencies<br><br>
+          Click accept to move forward.
+        </div>
+      `,
+      actions: [
+        {text:"Accept offer", type:"primary", next:3},
+        {text:"I need time to think", type:"ghost", next:3}
+      ],
+      footer: "Notice how ‘choice’ is nudged: accept is the obvious path."
+    },
+    {
+      title: "One small requirement",
+      subtitle: "Just standard procedure. For your safety and our trust.",
+      box: `
+        <span class="tag warn">Collateral</span>
+        <div class="fineprint" style="margin-top:10px">
+          Please confirm you can provide a land title or family land document as security.<br><br>
+          <em>Don’t worry.</em> This is normal. It’s only “in case of issues”.
+        </div>
+      `,
+      actions: [
+        {text:"I can provide land document", type:"primary", next:4},
+        {text:"I can’t provide it", type:"danger", next:4}
+      ],
+      footer: "This is where ‘empowerment’ quietly turns into risk transfer."
+    },
+    {
+      title: "Repayment schedule",
+      subtitle: "A simple plan. You can handle this.",
+      box: `
+        <div class="fineprint">
+          Monthly payment: <strong>$95</strong><br>
+          Fees: “minimal”<br>
+          Grace period: <strong>7 days</strong><br><br>
+          <span class="tag">Reminder</span> Late fees may apply.
+        </div>
+      `,
+      actions: [
+        {text:"Continue", type:"primary", next:5},
+        {text:"Back", type:"ghost", next:3}
+      ],
+      footer: "The numbers look clean. Life usually isn’t."
+    },
+    {
+      title: "Payment missed",
+      subtitle: "It happens. Let’s fix this quickly.",
+      box: `
+        <span class="tag warn">Late fee added</span>
+        <div class="fineprint" style="margin-top:10px">
+          New amount due: <strong>$112</strong><br>
+          “Friendly reminder”: Please pay within 48 hours.
+        </div>
+      `,
+      actions: [
+        {text:"Pay now", type:"primary", next:6},
+        {text:"I can’t pay now", type:"danger", next:6}
+      ],
+      footer: "Pressure starts as ‘friendly’ language."
+    },
+    {
+      title: "Collector message",
+      subtitle: "We noticed a delay. Please cooperate.",
+      box: `
+        <span class="tag danger">Collection</span>
+        <div class="fineprint" style="margin-top:10px">
+          “If payment is not made, we will proceed with further steps.”<br>
+          “We can visit your home to discuss.”<br><br>
+          Your stress is now part of the repayment system.
+        </div>
+      `,
+      actions: [
+        {text:"Continue", type:"primary", next:7},
+        {text:"Back", type:"ghost", next:5}
+      ],
+      footer: "This is where the ‘loan’ becomes a social and emotional burden."
+    },
+    {
+      title: "Forced choices",
+      subtitle: "Pick a ‘solution’. (None of them feel like a solution.)",
+      box: `
+        <div class="fineprint">
+          <ul>
+            <li>Sell part of the land to cover payments</li>
+            <li>Take another loan to repay this loan</li>
+            <li>Migrate for work / separate the family</li>
+            <li>Cut food, healthcare, or schooling costs</li>
+            <li>Increase unpaid care + survival work to keep things running</li>
+          </ul>
+        </div>
+      `,
+      actions: [
+        {text:"Continue", type:"primary", next:8},
+        {text:"Back", type:"ghost", next:6}
+      ],
+      footer: "This is the ‘closed loop’: debt → pressure → loss → more pressure."
+    },
+    {
+      title: "Reveal: what you just clicked through",
+      subtitle: "This is why people call it a debt trap, not empowerment.",
+      box: `
+        <span class="tag danger">Debt trap</span>
+        <span class="tag danger">Land loss</span>
+        <span class="tag warn">Care burden</span>
+        <div class="fineprint" style="margin-top:10px">
+          The point is not that every loan is identical. The point is the pattern:<br><br>
+          <strong>Empowerment talk</strong> → collateral (often land) → repayment pressure → collection → forced choices → deeper inequality.<br><br>
+          And the burden is often gendered: women absorb the stress, the care work, and the survival work.
+        </div>
+      `,
+      actions: [
+        {text:"Restart", type:"primary", next:0},
+        {text:"Close", type:"ghost", next:null}
+      ],
+      footer: "If you present this, keep it clear: it’s a satire/learning tool, not a real service."
+    }
+  ];
+
+  let idx = 0;
+
+  const title = document.getElementById("title");
+  const subtitle = document.getElementById("subtitle");
+  const box = document.getElementById("box");
+  const actions = document.getElementById("actions");
+  const step = document.getElementById("step");
+  const bar = document.getElementById("bar");
+  const footer = document.getElementById("footer");
+
+  function render(i){
+    idx = i;
+    const s = steps[i];
+    title.textContent = s.title;
+    subtitle.textContent = s.subtitle;
+    box.innerHTML = s.box;
+    footer.textContent = s.footer || "";
+    actions.innerHTML = "";
+
+    const pct = Math.round((i/(steps.length-1))*100);
+    bar.style.width = pct + "%";
+    step.textContent = `Step ${i+1} / ${steps.length}`;
+
+    s.actions.forEach(a=>{
+      const b = document.createElement("button");
+      b.className = "btn " + (a.type || "");
+      b.textContent = a.text;
+      b.onclick = ()=>{
+        if(a.next === null){
+          // no-op close
+          alert("End of demo. (Nothing was submitted.)");
+          return;
+        }
+        render(a.next);
+      };
+      actions.appendChild(b);
+    });
+  }
+
+  document.addEventListener("keydown", (e)=>{
+    if(e.key === "ArrowRight"){
+      if(idx < steps.length-1) render(idx+1);
+    }
+    if(e.key === "ArrowLeft"){
+      if(idx > 0) render(idx-1);
+    }
+  });
+
+  render(0);
+</script>
+</body>
+</html>
